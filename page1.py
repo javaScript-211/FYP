@@ -1,5 +1,5 @@
 import streamlit  as st
-import multiEmote
+import multiEmoteFT
 import database
 import reasoning
 
@@ -11,7 +11,7 @@ page_bg_design = """
 </style>
 """
 
-emotionDetector = multiEmote.EmotionDetector2()
+emotionDetector = multiEmoteFT.EmotionDetector()
 st.session_state.count = 0
 @st.cache_resource
 def display_emotions(text:str, top_n, count):
