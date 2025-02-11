@@ -1,9 +1,7 @@
-# Load model directly
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 
-
-class EmotionDetector:
+class EmotionDetector2:
     def __init__(self, model_name="Sungjin228/roberta-finetuned-sem_eval-english"):
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForSequenceClassification.from_pretrained(model_name)

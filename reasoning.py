@@ -10,24 +10,22 @@ client = anthropic.Anthropic(api_key=key)
 def claudeAPI(textType, emotion, feedback):
     if textType == "reason":
         APImessage = """
-            <>
             I want you to act as an expert text analyzer to analyze the following text to find
             key reasons to match the detected emotions using the criteria outlined below. The final
             reasons should be formatted in a certain way.
-            </>
-            <feedback>"""+feedback+"""</feedback>
-            <emotions>"""+emotion+""" </emotions>
-            <criteria>
+            feedback-"""+feedback+"""
+            emotions-"""+emotion+""" 
+            criteria
             1. identifying certain words and phrases that indicate the defined emotions.
             2. analyzing the overall structure of the feedback given.  
             3. consider words or phrases that were NOT within the text.
             4. look at how the elements are combined 
-            </criteria>
-            <format>
+            
+            format
             The result should only consist of the reasons, no additional text.
             The result should be formatted as bullet points
             The result cannot exceed 3 bullet points
-            </format>
+            
         """
         maxT= 100
     elif textType == "summary":

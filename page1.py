@@ -11,12 +11,13 @@ page_bg_design = """
 </style>
 """
 
-emotionDetector = multiEmoteFT.EmotionDetector()
+emotionDetector = multiEmoteFT.EmotionDetector2()
 st.session_state.count = 0
 @st.cache_resource
 def display_emotions(text:str, top_n, count):
     st.session_state.count += 1
     emotion1, emotion2, emotion3 = emotionDetector.detect_emotion(text, top_n)
+    
     reasons = reasoning.claudeAPI("reason", emotion1[0], feedback)
     database.enter_data(feedback, option, emotion1[0], emotion2[0], reasons)
     st.write(emotion1)
