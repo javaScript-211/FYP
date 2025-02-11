@@ -109,4 +109,3 @@ def get_emotions():
     conn.close()
 
     return result
-
