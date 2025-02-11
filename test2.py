@@ -1,35 +1,46 @@
+# Load model directly
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-import torch.nn.functional as F
 
-model_name = "michellejieli/emotion_text_classifier"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
-label_mapping = {
-    0: "sadness",
-    1: "joy",
-    2: "love",
-    3: "anger",
-    4: "fear",
-    5: "surprise"
-}
+class EmotionDetector2:
+    def __init__(self, model_name="Sungjin228/roberta-finetuned-sem_eval-english"):
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
+        self.emotion_labels = ['admiration', 'amusement', 'anger', 'annoyance', 'approval', 
+                               'caring', 'confusion', 'curiosity', 'desire', 'disappointment', 
+                               'disapproval', 'disgust', 'embarrassment', 'excitement', 
+                               'fear', 'gratitude', 'grief', 'joy', 'love', 'nervousness', 
+                               'optimism', 'pride', 'realization', 'relief', 'remorse', 
+                               'sadness', 'surprise', 'neutral']
 
-def classify_emotion(text):
-    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+    def detect_emotion(self, text, top_n=3):
+        inputs = self.tokenizer(text, return_tensors="pt")
 
-    with torch.no_grad():
-        outputs = model(**inputs)
+        with torch.no_grad():
+            outputs = self.model(**inputs)
 
-    logits = outputs.logits
-    probabilities = F.softmax(logits, dim=1)
+        results = outputs.logits
+        probResult = torch.softmax(results, dim=-1)[0] 
+        
+        sortedProb, sortedValue = torch.sort(probResult, descending=True)
+    
+        if top_n:
+            sortedProb = sortedProb[:top_n]
+            sortedValue = sortedValue[:top_n]
+            emotions = []
+            probabilities = []
 
-    predicted_class = torch.argmax(probabilities, dim=1).item()
-    confidence_score = probabilities[0, predicted_class].item()
+            for prob, idx in zip(sortedProb, sortedValue):
+                emotions.append(self.emotion_labels[idx.item()])
+                probabilities.append(prob.item())
+                
+        return (emotions[0], probabilities[0]), (emotions[1], probabilities[1]), (emotions[2], probabilities[2])
+    
 
-    return label_mapping.get(predicted_class, "Unknown Emotion"), confidence_score
 
-if __name__ == "__main__":
-    text = input("Enter a sentence: ")
-    emotion, confidence = classify_emotion(text)
-    print(f"Predicted Emotion: {emotion} (Confidence: {confidence:.4f})")
+text = "I believe that the module is not the best. The content does not expand on topics that they mentioned. It felt very surface level and wasted time "
+n=3
+emote = EmotionDetector2()
+emotions1, emotions2, emotions3 = emote.detect_emotion(text,n)
+print(emotions1, emotions2, emotions3)
