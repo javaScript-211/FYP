@@ -31,16 +31,20 @@ def claudeAPI(textType, emotion, feedback):
     elif textType == "summary":
         reasons = database.get_reasons()
         APImessage = """<>
-            I want you to act as an expert text analyzer to summarize the following reasons given using the following criteria & format.
+            I want you to act as an expert text analyzer to summarize the following 
+            reasons given using the following criteria & format.
             </>
             <reasons>"""+str(reasons)+"""</reasons>
 
             <criteria>
             1. Organize the data entries by module number
-            2. Analyse the language used for each module, focusing on emotional inidcators, language intensity and use of descriptive terms
+            2. Analyse the language used for each module, focusing on emotional 
+            inidcators, language intensity and use of descriptive terms
             3. Extract the themes for each data entry, noting unique or standout observations
-            4. Produce an overall sentiment for each module formatted as one of the following (exteremely positive, positive, negative or extremely negative)
-            5. Identify and recognise patterns of common issues, shared positive elements and unique characteristics of modules
+            4. Produce an overall sentiment for each module formatted as one of the following 
+            (exteremely positive, positive, negative or extremely negative)
+            5. Identify and recognise patterns of common issues, shared positive elements and 
+            unique characteristics of modules
             </criteria>
 
             <format>
