@@ -24,7 +24,6 @@ st.text("View all reasons, Summarize and view statistics on feedback entered so 
 st.divider()
 emotion = ""
 feedback = ""
-summaryData = ""
 
 col1, col2,col3 = st.columns(3)
 with col1:
@@ -38,15 +37,12 @@ with col3:
 
 if Summarybtn:
     textType = "summary"
-    if summaryData == "":
-        result = reasoning.claudeAPI(textType, emotion, feedback)
-        summaryData = result
-        st.write(result)
-    else:
-        st.write(summaryData)
+    result = reasoning.claudeAPI(textType, emotion, feedback)
+    summaryData = result
+    st.write(result)
 
 if Databtn:
-    db_path = 'feedback.db'
+    db_path = 'feedback2.db'
     df = database.get_reasons()
     st.dataframe(df, hide_index=True)
 

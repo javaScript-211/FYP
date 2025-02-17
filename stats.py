@@ -19,7 +19,8 @@ def graphLine():
 
 def emotionCount():
     eList = database.get_emotions()
-    eCount = Counter(emotion[0] for emotion in eList)
+    all_emotions = [emotion for row in eList for emotion in row if emotion]  
+    eCount = Counter(all_emotions)  
     emotions = list(eCount.keys())
     count = list(eCount.values())
 
