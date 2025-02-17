@@ -3,10 +3,12 @@ import multiEmoteFT
 import database
 import reasoning
 
+st.set_page_config(layout="wide")
+
 page_bg_design = """
 <style>
-[data-testid="stApp"]{
-
+[data-testid="stHeader"]{
+    background-color: #ff3d3d;
 }
 </style>
 """
