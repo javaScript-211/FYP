@@ -5,7 +5,7 @@ import database
 load_dotenv()
 
 key=os.getenv("fyp_api_key")
-client = anthropic.Anthropic(api_key="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")
+client = anthropic.Anthropic(api_key=key)
 
 def claudeAPI(textType, emotion, feedback):
     if textType == "reason":
