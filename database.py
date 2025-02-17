@@ -33,8 +33,8 @@ def enter_data(feedback,module,emotion1, emotion2, emotion3, reasons):
     date = now.strftime('%d/%m/%Y')
     id = id_generator()
 
-    data = [date, id, module, feedback, emotion1, emotion2, reasons]
-    c.execute("INSERT INTO feedback2 VALUES (?,?,?,?,?,?,?,?)", data)
+    data = [date, id, module, feedback, emotion1, emotion2, emotion3, reasons]
+    c.execute("INSERT INTO feedback VALUES (?,?,?,?,?,?,?,?)", data)
 
     conn.commit()
     conn.close()
@@ -42,7 +42,7 @@ def enter_data(feedback,module,emotion1, emotion2, emotion3, reasons):
 def get_reasons():
     conn = sqlite3.connect("feedback2.db") 
     cursor = conn.cursor()
-    cursor.execute("SELECT modules, reason FROM feedback2 ORDER BY modules") 
+    cursor.execute("SELECT modules, reason FROM feedback ORDER BY modules") 
     result = cursor.fetchall()
     conn.commit()
     conn.close()
@@ -51,7 +51,7 @@ def get_reasons():
 def get_count():
     conn = sqlite3.connect('feedback2.db', check_same_thread=False)
     c = conn.cursor()
-    c.execute("""SELECT * FROM feedback2""")
+    c.execute("""SELECT * FROM feedback""")
     result = c.fetchall()
     conn.commit()
     conn.close()
@@ -62,7 +62,7 @@ def get_count():
 def get_all():
     conn = sqlite3.connect('feedback2.db', check_same_thread=False)
     c = conn.cursor()
-    c.execute("""SELECT * FROM feedback2""")
+    c.execute("""SELECT * FROM feedback""")
     result = c.fetchall()
     conn.commit()
     conn.close()
@@ -73,7 +73,7 @@ def get_all():
 def get_dates():
     conn = sqlite3.connect('feedback2.db', check_same_thread=False)
     c = conn.cursor()
-    c.execute("""SELECT date FROM feedback2""")
+    c.execute("""SELECT date FROM feedback""")
     result = c.fetchall()
     conn.commit()
     conn.close()
@@ -83,7 +83,7 @@ def get_dates():
 def get_modules():
     conn = sqlite3.connect('feedback2.db', check_same_thread=False)
     c = conn.cursor()
-    c.execute("""SELECT modules FROM feedback2 ORDER BY modules ASC""")
+    c.execute("""SELECT modules FROM feedback ORDER BY modules ASC""")
     result = c.fetchall()
     conn.commit()
     conn.close()
@@ -94,7 +94,7 @@ def get_emotions():
     conn = sqlite3.connect('feedback2.db', check_same_thread=False)
     c = conn.cursor()
 
-    c.execute("""SELECT emotionOne, emotionTwo, emotionThree FROM feedback2 """)
+    c.execute("""SELECT emotionOne, emotionTwo, emotionThree FROM feedback """)
     result = c.fetchall()
     conn.commit()
     conn.close()
