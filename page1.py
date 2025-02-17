@@ -3,12 +3,21 @@ import multiEmoteFT
 import database
 import reasoning
 
-st.set_page_config(layout="wide")
+
 
 page_bg_design = """
 <style>
 [data-testid="stHeader"]{
-    background-color: #ff3d3d;
+    background-color: #E55451;
+}
+[data-testid="stHorizontalBlock"]{
+    background-color: #F5F5F5;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+[data-testid="stTextAreaRootElement"]{
+    background-color: #A9A9A9;
 }
 </style>
 """
@@ -35,6 +44,7 @@ def display_emotions(text:str, top_n, count):
 st.set_page_config(
     page_title="FYP Project",
     page_icon="",
+    layout="wide"
 )
 st.markdown(page_bg_design, unsafe_allow_html=True)
 st.title("Sentiment Analysis of Feedback")
@@ -45,10 +55,14 @@ st.sidebar.header("Navigation")
 
 st.divider()
 st.empty()
-option = st.selectbox(
-    "Select a module:",
-    ("CS2001","CS2002","CS2003","CS2004","CS2005"),
-)
+col1_1, col2_1 = st.columns(2)
+with col1_1:
+    option = st.selectbox(
+        "Select a module:",
+        ("CS2001","CS2002","CS2003","CS2004","CS2005"),
+    )
+with col2_1:
+    st.text("More modules & options coming\nsoon.")
 st.divider()
 st.empty()
 st.empty()
