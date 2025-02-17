@@ -4,6 +4,8 @@ import reasoning
 import stats
 import matplotlib.pyplot as plt
 import pandas as pd
+import io
+
 
 page2_bg_design = """
 <style>
@@ -12,6 +14,13 @@ page2_bg_design = """
 }
 </style>
 """
+
+def convert_to_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
+
+db_path = 'feedback2.db'
+df = database.get_reasons()
+buffer = io.BytesIO()
 
 st.set_page_config(
     page_title="FYP Project",
@@ -28,12 +37,20 @@ feedback = ""
 col1, col2,col3 = st.columns(3)
 with col1:
     Databtn = st.button("View Reasons", type="primary")
-    
 with col2:
     Summarybtn = st.button("View Summary", type="primary")
     
 with col3:
     Graphbtn = st.button("View Statistics", type="primary")
+
+csv = convert_to_csv(df)
+
+download1 = st.download_button(
+    label="Download Reasons",
+    data=csv,
+    file_name='large_df.csv',
+    mime='text/csv'
+)
 
 if Summarybtn:
     textType = "summary"
@@ -42,8 +59,6 @@ if Summarybtn:
     st.write(result)
 
 if Databtn:
-    db_path = 'feedback2.db'
-    df = database.get_reasons()
     st.dataframe(df, hide_index=True)
 
 elif Graphbtn:
