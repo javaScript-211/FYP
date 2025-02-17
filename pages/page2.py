@@ -40,16 +40,10 @@ if Summarybtn:
     result = reasoning.claudeAPI(textType, emotion, feedback)
     st.write(result)
 
-elif Databtn:
-    reasons = {}
-    Allreasons = database.get_reasons()
-    df = pd.DataFrame(columns=['Module', 'Reason'])
-    for i in range(0, len(Allreasons)):
-        ModuleOpinion = Allreasons[i]
-        ModuleOpinionSplit = ModuleOpinion.split(' ')
-        last = ModuleOpinionSplit[len(ModuleOpinionSplit)-1]
-        df.loc[len(df)] = [last, Allreasons[i]]
-    st.table(df)   
+if Databtn:
+    db_path = 'feedback.db'
+    df = database.get_reasons()
+    st.dataframe(df, hide_index=True)
 
 elif Graphbtn:
     modules, counts = stats.graphPC()

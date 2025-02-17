@@ -17,9 +17,8 @@ st.session_state.count = 0
 def display_emotions(text:str, top_n, count):
     st.session_state.count += 1
     emotion1, emotion2, emotion3 = emotionDetector.detect_emotion(text, top_n)
-    
     reasons = reasoning.claudeAPI("reason", emotion1[0], feedback)
-    database.enter_data(feedback, option, emotion1[0], emotion2[0], reasons)
+    database.enter_data(feedback, option, emotion1[0], emotion2[0], emotion3[0], reasons)
     st.write(emotion1)
     st.empty()
     st.write(emotion2)

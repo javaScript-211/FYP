@@ -5,7 +5,7 @@ import database
 load_dotenv()
 
 key=os.getenv("fyp_api_key")
-client = anthropic.Anthropic(api_key=key)
+client = anthropic.Anthropic(api_key="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")
 
 def claudeAPI(textType, emotion, feedback):
     if textType == "reason":
@@ -27,6 +27,7 @@ def claudeAPI(textType, emotion, feedback):
             reasons should be formatted in a certain way.
             feedback-"""+feedback+"""
             emotions-"""+emotion+"""
+            if you think the feedback cannot be categorized as the emotion defined, then reply with "text could not be accurately examined"
         <\message>
         <criteria>
             1. identifying certain words and phrases that indicate the defined emotions.
@@ -42,7 +43,7 @@ def claudeAPI(textType, emotion, feedback):
         """
 
         APImessage = examples +"\n"+message
-        maxT= 100
+        maxT= 150
     elif textType == "summary":
         reasons = database.get_reasons()
         APImessage = """
