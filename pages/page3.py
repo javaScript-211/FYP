@@ -23,17 +23,18 @@ submission = st.button("Submit", type="primary", )
 
 if submission:
     result = reasoning.claudeAPI("query","-", feedback)
-    "###Response to query" 
+    st.subheader("Response to query") 
     st.write(result)
     
     database.enter_query(feedback, result)
     df = database.get_queries()
     st.dataframe(df)
+    
+    st.divider()
+    st.subheader("Option to Download") 
     csv = convert_to_csv(df)
     downloadbtn = st.download_button(label="Download Reasons",
     data=csv,
     file_name='Feedback_queries.csv',
     mime='text/csv'
     )
-
-###Make queries downloadable tmrw
