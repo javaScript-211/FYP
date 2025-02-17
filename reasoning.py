@@ -75,7 +75,8 @@ def claudeAPI(textType, emotion, feedback):
         maxT=1000
     elif textType == "query":
         data = database.get_all()
-        APImessage = "Based on the reasons ["+data+"] answer the following query - '"+feedback+"'"
+        lData = str(data)
+        APImessage = """Based on the reasons ["""+lData+"""] answer the following query - """+feedback
         maxT=1000
     
     message = client.messages.create(

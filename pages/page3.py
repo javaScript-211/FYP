@@ -1,10 +1,18 @@
 import streamlit  as st
 import reasoning
+import pandas as pd
+import database
+import io
 
 page3_bg_design = """
 <style>
 
 """
+session = [[]]
+buffer = io.BytesIO()
+
+def convert_to_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
 
 st.title("Queries")
 st.text("This section is dedicated for questions about the feedback to\n be answered through the AI solution")
@@ -14,6 +22,18 @@ feedback = st.text_area("Enter your query here :")
 submission = st.button("Submit", type="primary", )
 
 if submission:
-    result = reasoning.claudeAPI("query","", feedback)
-    st.write("Response to query")
+    result = reasoning.claudeAPI("query","-", feedback)
+    "###Response to query" 
     st.write(result)
+    
+    database.enter_query(feedback, result)
+    df = database.get_queries()
+    st.dataframe(df)
+    csv = convert_to_csv(df)
+    downloadbtn = st.download_button(label="Download Reasons",
+    data=csv,
+    file_name='Feedback_queries.csv',
+    mime='text/csv'
+    )
+
+###Make queries downloadable tmrw
