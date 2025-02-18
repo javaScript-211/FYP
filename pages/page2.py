@@ -25,6 +25,7 @@ buffer = io.BytesIO()
 st.set_page_config(
     page_title="FYP Project",
     page_icon="",
+    layout="wide"
 )
 st.markdown(page2_bg_design, unsafe_allow_html=True)
 st.title("Statistics & Summary")

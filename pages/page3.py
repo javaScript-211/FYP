@@ -11,6 +11,12 @@ page3_bg_design = """
 session = [[]]
 buffer = io.BytesIO()
 
+st.set_page_config(
+    page_title="FYP Project",
+    page_icon="",
+    layout="wide"
+)
+
 def convert_to_csv(df):
     return df.to_csv(index=False).encode('utf-8')
 
