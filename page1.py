@@ -10,6 +10,7 @@ page_bg_design = """
 [data-testid="stHeader"]{
     background-color: #E55451;
 }
+
 [data-testid="stHorizontalBlock"]{
     background-color: #F5F5F5;
     padding-left: 25px;
@@ -46,8 +47,10 @@ st.set_page_config(
     page_icon="",
     layout="wide"
 )
+
 st.markdown(page_bg_design, unsafe_allow_html=True)
 st.title("Sentiment Analysis of Feedback")
+st.divider()
 st.subheader("Final Year Project - CS3072")
 st.text("This solution was designed as a way that allows feedback to be entered and processed\nin one tool. Teachers or students can enter feedback and AI will find emotions and \nkey reasons.")
 
@@ -62,7 +65,7 @@ with col1_1:
         ("CS2001","CS2002","CS2003","CS2004","CS2005"),
     )
 with col2_1:
-    st.text("More modules & options coming\nsoon.")
+    st.text("More modules & options coming\nsoon...")
 st.divider()
 st.empty()
 st.empty()
@@ -73,7 +76,9 @@ with col1:
     st.empty()
     feedback = st.text_area("Enter your feedback here for "+option+":")
     submission = st.button("Submit", type="primary", )
-    st.text("Any information entered into the system\nwill be stored anonymously into a\ndatabase. Furthermore, academic staff and\npersonnel will be able to read and\nprocess.")
+    st.text("""Any information entered into the system will be stored anonymously into a 
+database. Furthermore, academic staff and personnel will be able to read 
+and process.""")
 with col2:
     "### Emotion Results"
     st.empty()

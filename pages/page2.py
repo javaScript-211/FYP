@@ -29,6 +29,7 @@ st.set_page_config(
 )
 st.markdown(page2_bg_design, unsafe_allow_html=True)
 st.title("Statistics & Summary")
+st.divider()
 st.subheader("Final Year Project - CS3072")
 st.text("View all reasons, Summarize and view statistics on feedback entered so far")
 st.divider()

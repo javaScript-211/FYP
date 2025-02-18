@@ -21,6 +21,7 @@ def convert_to_csv(df):
     return df.to_csv(index=False).encode('utf-8')
 
 st.title("Queries")
+st.divider()
 st.text("This section is dedicated for questions about the feedback to\n be answered through the AI solution")
 st.markdown(page3_bg_design, unsafe_allow_html=True)
 
