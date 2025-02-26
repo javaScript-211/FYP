@@ -38,8 +38,9 @@ load_css(css_path)
 st.markdown(page2_bg_design, unsafe_allow_html=True)
 st.title("Statistics & Summary")
 st.divider()
-st.write("")
-st.markdown(f'<p style="background-color:#FCC9CB;">View all reasons, Summarize and view statistics on feedback entered so far onto the system</p>', unsafe_allow_html=True)
+st.subheader( "What is this page for?")
+st.write("""View all reasons stored so far and a summary of reviews for each module.\n 
+View statistics on the feedback entered the system""")
 st.divider()
 emotion = ""
 feedback = ""

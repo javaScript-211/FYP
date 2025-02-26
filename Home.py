@@ -63,7 +63,11 @@ def display_emotions(text:str, top_n, count):
 st.title("Sentiment Analysis of Feedback")
 st.divider()
 st.subheader("Final Year Project - CS3072")
-st.write("This solution was designed as a way that allows feedback to be entered and processed\nin one tool. Teachers or students can enter feedback and AI will find emotions and \nkey reasons.")
+st.write("What is this tool about?")
+st.write("""This solution was designed as a way that allows feedback to be entered and processed in one tool. 
+         Teachers or students can enter feedback in the text area below and AI will find emotions and key reasons why the text was 
+         deemed a certain emotion (angry, sad or annoyed). The information is stored so teachers can view and can carry out
+         further analysis. This solution contains an AI query answerer based on the feedback stored in the database too.""")
 
 st.sidebar.header("Navigation")
 
