@@ -6,7 +6,10 @@ import io
 
 page3_bg_design = """
 <style>
-
+[data-testid="stHeader"]{
+    background-color: #E55451;
+}
+</style>
 """
 session = [[]]
 buffer = io.BytesIO()
@@ -20,9 +23,9 @@ st.set_page_config(
 def convert_to_csv(df):
     return df.to_csv(index=False).encode('utf-8')
 
-st.title("Queries")
+st.title("Queries/Discussions")
 st.divider()
-st.text("This section is dedicated for questions about the feedback to\n be answered through the AI solution")
+st.write("This section is dedicated for questions about the feedback to be answered through the AI solution")
 st.markdown(page3_bg_design, unsafe_allow_html=True)
 
 feedback = st.text_area("Enter your query here :")

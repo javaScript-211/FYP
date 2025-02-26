@@ -5,7 +5,13 @@ import stats
 import matplotlib.pyplot as plt
 import pandas as pd
 import io
+import pathlib
 
+st.set_page_config(
+    page_title="FYP Project",
+    page_icon="",
+    layout="wide"
+)
 
 page2_bg_design = """
 <style>
@@ -22,15 +28,18 @@ db_path = 'feedback2.db'
 df = database.get_reasons()
 buffer = io.BytesIO()
 
-st.set_page_config(
-    page_title="FYP Project",
-    page_icon="",
-    layout="wide"
-)
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read()}<\style")
+
+css_path = pathlib.Path(r"\Users\James\Documents\CS-3Yr\project\sentanalysis2\styles.css")
+load_css(css_path)
+
 st.markdown(page2_bg_design, unsafe_allow_html=True)
 st.title("Statistics & Summary")
 st.divider()
-st.write("View all reasons, Summarize and view statistics on feedback entered so far onto the system")
+st.write("")
+st.markdown(f'<p style="background-color:#FCC9CB;">View all reasons, Summarize and view statistics on feedback entered so far onto the system</p>', unsafe_allow_html=True)
 st.divider()
 emotion = ""
 feedback = ""
