@@ -4,6 +4,14 @@ import pandas as pd
 import database
 import io
 
+page4_bg_design = """
+<style>
+[data-testid="stHeader"]{
+    background-color: #E55451;
+}
+</style>
+"""
+st.markdown(page4_bg_design, unsafe_allow_html=True)
 st.set_page_config(
     page_title="FYP Project",
     page_icon="",

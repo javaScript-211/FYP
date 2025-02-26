@@ -9,8 +9,8 @@ import io
 
 page2_bg_design = """
 <style>
-[data-testid="stApp"]{
-
+[data-testid="stHeader"]{
+    background-color: #E55451;
 }
 </style>
 """
@@ -30,8 +30,7 @@ st.set_page_config(
 st.markdown(page2_bg_design, unsafe_allow_html=True)
 st.title("Statistics & Summary")
 st.divider()
-st.subheader("Final Year Project - CS3072")
-st.text("View all reasons, Summarize and view statistics on feedback entered so far")
+st.write("View all reasons, Summarize and view statistics on feedback entered so far onto the system")
 st.divider()
 emotion = ""
 feedback = ""

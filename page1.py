@@ -3,8 +3,6 @@ import multiEmoteFT
 import database
 import reasoning
 
-
-
 page_bg_design = """
 <style>
 [data-testid="stHeader"]{
@@ -12,13 +10,16 @@ page_bg_design = """
 }
 
 [data-testid="stHorizontalBlock"]{
-    background-color: #F5F5F5;
+    background-color: #FCC9CB;
     padding-left: 25px;
     padding-right: 25px;
     padding-bottom: 20px;
     padding-top: 20px;
 [data-testid="stTextAreaRootElement"]{
-    background-color: #A9A9A9;
+    background-color: #FCC9CB;
+}
+div[role="selectbox"] ul {
+    background-color: red;
 }
 </style>
 """
@@ -47,12 +48,12 @@ st.set_page_config(
     page_icon="",
     layout="wide"
 )
-
 st.markdown(page_bg_design, unsafe_allow_html=True)
+
 st.title("Sentiment Analysis of Feedback")
 st.divider()
 st.subheader("Final Year Project - CS3072")
-st.text("This solution was designed as a way that allows feedback to be entered and processed\nin one tool. Teachers or students can enter feedback and AI will find emotions and \nkey reasons.")
+st.write("This solution was designed as a way that allows feedback to be entered and processed\nin one tool. Teachers or students can enter feedback and AI will find emotions and \nkey reasons.")
 
 st.sidebar.header("Navigation")
 
@@ -60,12 +61,13 @@ st.divider()
 st.empty()
 col1_1, col2_1 = st.columns(2)
 with col1_1:
-    option = st.selectbox(
-        "Select a module:",
-        ("CS2001","CS2002","CS2003","CS2004","CS2005"),
-    )
+    "### Select Module"
+    option = st.selectbox("""Modules spanning from first to third year of the computer science course""",("CS2001","CS2002","CS2003","CS2004","CS2005"),)
 with col2_1:
-    st.text("More modules & options coming\nsoon...")
+    st.text("")
+    st.text("")
+    st.text("")
+    st.write("More modules & options coming soon...")
 st.divider()
 st.empty()
 st.empty()
@@ -76,7 +78,7 @@ with col1:
     st.empty()
     feedback = st.text_area("Enter your feedback here for "+option+":")
     submission = st.button("Submit", type="primary", )
-    st.text("""Any information entered into the system will be stored anonymously into a 
+    st.write("""Any information entered into the system will be stored anonymously into a 
 database. Furthermore, academic staff and personnel will be able to read 
 and process.""")
 with col2:
