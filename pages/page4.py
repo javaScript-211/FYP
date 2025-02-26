@@ -4,6 +4,12 @@ import pandas as pd
 import database
 import io
 
+st.set_page_config(
+    page_title="FYP Project",
+    page_icon="",
+    layout="wide"
+)
+
 page4_bg_design = """
 <style>
 [data-testid="stHeader"]{
@@ -11,12 +17,9 @@ page4_bg_design = """
 }
 </style>
 """
+
 st.markdown(page4_bg_design, unsafe_allow_html=True)
-st.set_page_config(
-    page_title="FYP Project",
-    page_icon="",
-    layout="wide"
-)
+
 
 st.title("Judge LLM")
 st.divider()

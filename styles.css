@@ -1,0 +1,17 @@
+.st-title-styledHeader h1{
+    background-color: blue;
+}
+
+.st-key-grey button{
+    background-color: #A9A9A9;
+    border: #C0C0C0;
+}
+
+.st-key-grey button p{
+    color: black;
+}
+
+.st-key-grey button:hover{
+    background-color: #D3D3D3;
+    border: #C0C0C0;
+}

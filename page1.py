@@ -2,6 +2,14 @@ import streamlit  as st
 import multiEmoteFT
 import database
 import reasoning
+import pathlib
+
+st.set_page_config(
+    page_title="FYP Project",
+    page_icon="",
+    layout="wide"
+)
+
 
 page_bg_design = """
 <style>
@@ -24,6 +32,15 @@ div[role="selectbox"] ul {
 </style>
 """
 
+st.markdown(page_bg_design, unsafe_allow_html=True)
+
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read()}<\style")
+
+css_path = pathlib.Path(r"\Users\James\Documents\CS-3Yr\project\sentanalysis2\styles.css")
+load_css(css_path)
+
 emotionDetector = multiEmoteFT.EmotionDetector2()
 st.session_state.count = 0
 @st.cache_resource
@@ -42,13 +59,6 @@ def display_emotions(text:str, top_n, count):
     st.empty()
     st.write(reasons)
     return count
-
-st.set_page_config(
-    page_title="FYP Project",
-    page_icon="",
-    layout="wide"
-)
-st.markdown(page_bg_design, unsafe_allow_html=True)
 
 st.title("Sentiment Analysis of Feedback")
 st.divider()
@@ -77,7 +87,7 @@ with col1:
     st.empty()
     st.empty()
     feedback = st.text_area("Enter your feedback here for "+option+":")
-    submission = st.button("Submit", type="primary", )
+    submission = st.button("Submit", type="primary", key="grey")
     st.write("""Any information entered into the system will be stored anonymously into a 
 database. Furthermore, academic staff and personnel will be able to read 
 and process.""")
