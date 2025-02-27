@@ -10,7 +10,6 @@ st.set_page_config(
     layout="wide"
 )
 
-
 page_bg_design = """
 <style>
 [data-testid="stHeader"]{

@@ -39,29 +39,31 @@ st.markdown(page2_bg_design, unsafe_allow_html=True)
 st.title("Statistics & Summary")
 st.divider()
 st.subheader( "What is this page for?")
-st.write("""View all reasons stored so far and a summary of reviews for each module.\n 
-View statistics on the feedback entered the system""")
+st.write("""- View all reasons stored so far & download the reasons as an excel sheet.\n
+- Obtain a summary of each module powered by Claude AI.\n 
+- View statistics on the feedback entered the system.\n
+""")
 st.divider()
+
 emotion = ""
 feedback = ""
 
 col1, col2,col3 = st.columns(3)
 with col1:
     Databtn = st.button("View Reasons", type="primary")
+    csv = convert_to_csv(df)
+
+    download1 = st.download_button(
+        label="Download Reasons",
+        data=csv,
+        file_name='Feedback_reasons.csv',
+        mime='text/csv'
+    )
 with col2:
     Summarybtn = st.button("View Summary", type="primary")
     
 with col3:
     Graphbtn = st.button("View Statistics", type="primary")
-
-csv = convert_to_csv(df)
-
-download1 = st.download_button(
-    label="Download Reasons",
-    data=csv,
-    file_name='Feedback_reasons.csv',
-    mime='text/csv'
-)
 
 if Summarybtn:
     textType = "summary"
