@@ -81,8 +81,6 @@ def get_queries():
     conn.close()
     return pd.DataFrame(result, columns=["Prompt", "Response"])
 
-
-
 def get_count():
     conn = sqlite3.connect('feedback2.db', check_same_thread=False)
     c = conn.cursor()
@@ -90,7 +88,6 @@ def get_count():
     result = c.fetchall()
     conn.commit()
     conn.close()
-
     total = len(result)
     return total
 
@@ -101,7 +98,6 @@ def get_all():
     result = c.fetchall()
     conn.commit()
     conn.close()
-
     return result
 
 def get_dates():
@@ -111,7 +107,6 @@ def get_dates():
     result = c.fetchall()
     conn.commit()
     conn.close()
-    
     return result
 
 def get_modules():
@@ -121,13 +116,11 @@ def get_modules():
     result = c.fetchall()
     conn.commit()
     conn.close()
-
     return result
 
 def get_emotions():
     conn = sqlite3.connect('feedback2.db', check_same_thread=False)
     c = conn.cursor()
-
     c.execute("""SELECT emotionOne, emotionTwo, emotionThree FROM feedback """)
     result = c.fetchall()
     conn.commit()
