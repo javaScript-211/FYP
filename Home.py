@@ -32,6 +32,7 @@ div[role="selectbox"] ul {
 """
 
 st.markdown(page_bg_design, unsafe_allow_html=True)
+st.sidebar.header("Navigation")
 
 def load_css(file_path):
     with open(file_path) as f:
@@ -68,7 +69,7 @@ st.write("""This solution was designed as a way that allows feedback to be enter
          deemed a certain emotion (angry, sad or annoyed). The information is stored so teachers can view and can carry out
          further analysis. This solution contains an AI query answerer based on the feedback stored in the database too.""")
 
-st.sidebar.header("Navigation")
+
 
 st.divider()
 st.empty()
